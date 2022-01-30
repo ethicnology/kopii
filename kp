@@ -16,33 +16,34 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-FILE=$HOME/.tp
+FILE=$HOME/.kopii
 ARG=$1
 if [ -f "$FILE" ]; then
     if [ ! $ARG ]; then
         > $FILE
         echo "$PWD" >> $FILE
         DESTINATION=$(<$FILE)
-        echo "Portal created in $DESTINATION, waiting for contents…"
+        echo "kp: use kp again to kopii a file or a folder at=$DESTINATION"
         exit 1
     else
         DESTINATION=$(<$FILE)
         SOURCE="$PWD/$ARG"
         if [ -d $ARG ]; then
             cp -r $SOURCE $DESTINATION
-            echo "Copying directory: $ARG"
+            echo "kp: copying directory: $ARG"
             > $FILE
             exit 1
         elif [ -f $ARG ]; then
-            echo "Copying file: $ARG"
+            echo "kp: copying file: $ARG"
             cp $SOURCE $DESTINATION
             > $FILE
             exit 1
         else
-            echo "$ARG is not valid"
+            echo "kp: $ARG is not valid"
             exit 1
         fi
     fi    
 else
+    echo "kp: kopii creates a .kopii file in your home folder"
     touch $FILE
 fi

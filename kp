@@ -44,6 +44,7 @@ if [ -f "$FILE" ]; then
         fi
     fi    
 else
+    echo "kp: use kp to interact with kopii script"
     echo "kp: kopii creates a .kopii file in your home folder"
     touch $FILE
 fi

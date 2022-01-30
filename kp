@@ -28,7 +28,7 @@ if [ -f "$FILE" ]; then
     else
         DESTINATION=$(<$FILE)
         SOURCE="$PWD/$ARG"
-        elif [ -d $ARG ]; then
+        if [ -d $ARG ]; then
             cp -r $SOURCE $DESTINATION
             echo "Copying directory: $ARG"
             > $FILE
